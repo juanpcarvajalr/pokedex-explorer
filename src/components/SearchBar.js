@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { colors, radius, spacing, typography } from '../theme';
 
 export default function SearchBar({ value, onChangeText, onSearch }) {
+  // props: el estado del texto vive en el padre (HomeScreen / hook)
   return (
     <View style={styles.container}>
       <View style={styles.inputRow}>
@@ -22,13 +23,13 @@ export default function SearchBar({ value, onChangeText, onSearch }) {
           autoCapitalize="none"
           autoCorrect={false}
           returnKeyType="search"
-          onSubmitEditing={onSearch}
+          onSubmitEditing={onSearch} // tecla "Enter" del teclado
         />
       </View>
       <Pressable
         accessibilityRole="button"
         onPress={onSearch}
-        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]} // Pressable pressed
       >
         <Text style={styles.buttonText}>Buscar</Text>
       </Pressable>
@@ -36,6 +37,7 @@ export default function SearchBar({ value, onChangeText, onSearch }) {
   );
 }
 
+// StyleSheet: tipografía y colores salen del theme
 const styles = StyleSheet.create({
   container: {
     gap: spacing.sm,

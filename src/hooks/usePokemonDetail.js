@@ -7,7 +7,7 @@ import { getPokemonDetail } from '../services/pokemonAPI';
 //   const { status, pokemon, errorMessage, retry } = usePokemonDetail(nameOrId);
 //
 export default function usePokemonDetail(nameOrId) {
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState(null); // useState: ficha normalizada
   const [status, setStatus] = useState(STATUS.IDLE);
   const [errorMessage, setErrorMessage] = useState('');
   const [reloadKey, setReloadKey] = useState(0);
@@ -22,6 +22,7 @@ export default function usePokemonDetail(nameOrId) {
 
     const controller = new AbortController();
 
+    // async/await + try/catch: carga la ficha o distingue 404 de otros fallos
     const loadDetail = async () => {
       setStatus(STATUS.LOADING);
       setErrorMessage('');

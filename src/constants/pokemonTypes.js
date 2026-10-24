@@ -19,3 +19,14 @@ export const POKEMON_TYPES = {
   steel: { label: 'Acero', color: '#B7B7CE' },
   fairy: { label: 'Hada', color: '#D685AD' },
 };
+
+// Tipos claros: el texto del badge va en oscuro para conservar contraste
+export const LIGHT_TYPES = new Set([
+  'electric',
+  'ice',
+  'steel',
+  'ground',
+  'fairy',
+  'normal',
+  'bug',
+]);

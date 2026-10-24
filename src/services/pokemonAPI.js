@@ -6,8 +6,9 @@ import {
   hectogramsToKilograms,
 } from '../utils/formatters';
 
+// async/await: la promesa de fetch se espera antes de revisar el status
 const request = async (url, signal) => {
-  const response = await fetch(url, { signal }); // fetch + async/await
+  const response = await fetch(url, { signal }); // fetch
   // response.ok es false con 404 o 500; la PokéAPI responde 404 con texto, no JSON
   if (!response.ok) {
     const error = new Error(`Error http: ${response.status}`);

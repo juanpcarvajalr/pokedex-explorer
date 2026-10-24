@@ -47,8 +47,9 @@ export default function HomeScreen({ navigation }) {
     }
     navigation.navigate('PokemonDetail', { nameOrId: searchPokemon.name });
     clearSearch();
-  }, [searchStatus, searchPokemon, navigation, clearSearch]);
+  }, [searchStatus, searchPokemon, navigation, clearSearch]); // Matriz de dependencias
 
+  // useCallback: misma referencia mientras no cambie navigation
   const handlePressPokemon = useCallback(
     (pokemon) => {
       navigation.navigate('PokemonDetail', { nameOrId: pokemon.name });
@@ -127,13 +128,13 @@ export default function HomeScreen({ navigation }) {
     mainContent = (
       <FlatList
         data={pokemons}
-        keyExtractor={(item) => String(item.id)}
-        numColumns={2}
+        keyExtractor={(item) => String(item.id)} // keyExtractor: id estable por ítem
+        numColumns={2} // FlatList en cuadrícula de 2 columnas
         columnWrapperStyle={styles.row}
         renderItem={renderItem}
-        onEndReached={loadMore}
+        onEndReached={loadMore} // onEndReached: pide la siguiente página
         onEndReachedThreshold={0.5}
-        ListFooterComponent={renderFooter}
+        ListFooterComponent={renderFooter} // ListFooterComponent: indicador o error al cargar más
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContent}
       />
@@ -160,6 +161,7 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
+// StyleSheet: estilos de la pantalla (colores y espacios del theme)
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

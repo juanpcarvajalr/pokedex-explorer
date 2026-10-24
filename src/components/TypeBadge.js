@@ -1,20 +1,11 @@
 // Componente reutilizable: distintivo de tipo con color propio
 import { StyleSheet, Text, View } from 'react-native';
-import { POKEMON_TYPES } from '../constants/pokemonTypes';
+import { LIGHT_TYPES, POKEMON_TYPES } from '../constants/pokemonTypes';
 import { colors, radius, spacing, typography } from '../theme';
 import { capitalize } from '../utils/formatters';
 
-const LIGHT_TYPES = new Set([
-  'electric',
-  'ice',
-  'steel',
-  'ground',
-  'fairy',
-  'normal',
-  'bug',
-]);
-
 export default function TypeBadge({ type }) {
+  // props: type llega desde la ficha de detalle
   const typeInfo = POKEMON_TYPES[type] ?? {
     label: capitalize(type),
     color: colors.textMuted,
@@ -28,6 +19,7 @@ export default function TypeBadge({ type }) {
   );
 }
 
+// StyleSheet: estilos fuera del JSX para no recrearlos en cada render
 const styles = StyleSheet.create({
   badge: {
     borderRadius: radius.full,
@@ -35,7 +27,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
   },
   label: {
-    ...typography.label,
+    ...typography.label, // spread: reutiliza tipografía del theme
     fontWeight: '700',
   },
 });

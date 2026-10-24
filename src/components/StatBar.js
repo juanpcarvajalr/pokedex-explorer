@@ -4,6 +4,7 @@ import { MAX_STAT } from '../constants/stats';
 import { colors, radius, spacing, typography } from '../theme';
 
 export default function StatBar({ label, value }) {
+  // props: label (texto ES) y value (base_stat); el ancho se calcula fuera del JSX
   const safeValue = Number(value) || 0;
   const percentage = Math.min(safeValue / MAX_STAT, 1) * 100;
   const barWidth = `${percentage}%`;
@@ -21,6 +22,7 @@ export default function StatBar({ label, value }) {
   );
 }
 
+// StyleSheet: pista gris y relleno proporcional al valor
 const styles = StyleSheet.create({
   container: {
     gap: spacing.xs,

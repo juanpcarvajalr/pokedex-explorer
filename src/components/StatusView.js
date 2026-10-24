@@ -18,6 +18,7 @@ export default function StatusView({
   onRetry,
   onBack,
 }) {
+  // Renderizado condicional: un solo estado visible a la vez
   if (status === STATUS.LOADING) {
     return (
       <View style={styles.container}>
@@ -76,6 +77,7 @@ export default function StatusView({
   return null;
 }
 
+// StyleSheet: mismo diseño centrado que EstadoVacio de clase
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -50,7 +50,7 @@ export default function PokemonDetailScreen({ route, navigation }) {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.imageWrap}>
-        {/* Image remota: necesita width y height explícitos porque no conoce su tamaño */}
+        {/* Image remota: width y height explícitos; el fondo suaviza la carga */}
         <Image
           source={{ uri: pokemon.imageUrl }}
           style={styles.image}
@@ -104,6 +104,7 @@ export default function PokemonDetailScreen({ route, navigation }) {
   );
 }
 
+// StyleSheet: bloques tipo DetalleClaseScreen con tokens del theme
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   number: {
-    ...typography.label,
+    ...typography.label, // spread: tipografía del theme
   },
   name: {
     ...typography.title,

@@ -23,6 +23,7 @@ export default function usePokemonSearch() {
 
     const controller = new AbortController();
 
+    // async/await + try/catch: la búsqueda se cancela si cambia query
     const loadResult = async () => {
       setStatus(STATUS.LOADING);
       setErrorMessage('');

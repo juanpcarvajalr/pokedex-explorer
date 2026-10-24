@@ -5,6 +5,7 @@ import { colors, radius, shadow, spacing, typography } from '../theme';
 import { capitalize, formatPokemonNumber } from '../utils/formatters';
 
 function PokemonCard({ pokemon, onPress }) {
+  // props: pokemon (datos) y onPress (acción al tocar)
   const numberLabel = formatPokemonNumber(pokemon.id);
   const nameLabel = capitalize(pokemon.name);
 
@@ -12,9 +13,10 @@ function PokemonCard({ pokemon, onPress }) {
     <Pressable
       accessibilityRole="button"
       onPress={() => onPress(pokemon)}
-      style={({ pressed }) => [styles.card, shadow, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.card, shadow, pressed && styles.pressed]} // Pressable pressed
     >
       <View style={styles.imageWrap}>
+        {/* Image remota: width y height obligatorios; el fondo suaviza la carga */}
         <Image
           source={{ uri: pokemon.imageUrl }}
           style={styles.image}
@@ -29,6 +31,7 @@ function PokemonCard({ pokemon, onPress }) {
   );
 }
 
+// StyleSheet: estilos de la tarjeta fuera del JSX
 const styles = StyleSheet.create({
   card: {
     flex: 1,
@@ -69,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(PokemonCard);
+export default React.memo(PokemonCard); // React.memo: evita re-render si las props no cambian

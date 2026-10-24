@@ -21,6 +21,7 @@ export default function usePokemonList() {
     const controller = new AbortController(); // AbortController: cancela al cambiar offset o desmontar
     const isInitial = offset === 0;
 
+    // async/await: la petición se espera dentro del efecto
     const loadPage = async () => {
       isFetchingRef.current = true;
       if (isInitial) {
@@ -56,6 +57,7 @@ export default function usePokemonList() {
           setStatus(STATUS.ERROR);
         }
       } finally {
+        // finally: se ejecuta siempre (éxito o error), salvo si el cleanup ya abortó
         if (!controller.signal.aborted) {
           isFetchingRef.current = false;
           setIsLoadingMore(false);
